@@ -53,6 +53,17 @@
  */
 
 /**
+ * Environment settings:
+ *
+ * The $environment variable is used to override default $conf variable values.
+ * Drupal variables from environment variable will not be changed via variable_set()
+ * and their value always be return via variable_get(). This will guarantee, that
+ * default values (for example, from development environment) will be always
+ * overridden and won't be changed by production values.
+ */
+$environment = array();
+
+/**
  * Database settings:
  *
  * The $databases array specifies the database connection or

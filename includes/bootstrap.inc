@@ -743,6 +743,10 @@ function drupal_settings_initialize() {
   global $databases, $cookie_domain, $conf, $installed_profile, $update_free_access, $db_url, $db_prefix, $drupal_hash_salt, $is_https, $base_secure_url, $base_insecure_url;
   $conf = array();
 
+  // Export environment variable to the global namespace.
+  global $environment;
+  $environment = array();
+
   if (file_exists(DRUPAL_ROOT . '/' . conf_path() . '/settings.php')) {
     include_once DRUPAL_ROOT . '/' . conf_path() . '/settings.php';
   }
@@ -1226,8 +1230,16 @@ function variable_initialize($conf = array()) {
  */
 function variable_get($name, $default = NULL) {
   global $conf;
+  global $environment;
 
-  return isset($conf[$name]) ? $conf[$name] : $default;
+  if (isset($environment[$name])) {
+    $value = $environment[$name];
+  }
+  else {
+    $value = isset($conf[$name]) ? $conf[$name] : $default;
+  }
+
+  return $value;
 }
 
 /**
@@ -1249,10 +1261,11 @@ function variable_get($name, $default = NULL) {
 function variable_set($name, $value) {
   global $conf;
 
-  db_merge('variable')->key(array('name' => $name))->fields(array('value' => serialize($value)))->execute();
-
+  db_merge('variable')
+    ->key(array('name' => $name))
+    ->fields(array('value' => serialize($value)))
+    ->execute();
   cache_clear_all('variables', 'cache_bootstrap');
-
   $conf[$name] = $value;
 }
 
