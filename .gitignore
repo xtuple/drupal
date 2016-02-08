@@ -8,4 +8,5 @@ sites/*/private
 # Code-Driven Drupal
 files
 sites/all
+sites/project
 sites/default/parameters.php

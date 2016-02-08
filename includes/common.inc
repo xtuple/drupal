@@ -5557,6 +5557,7 @@ function drupal_system_listing($mask, $directory, $key = 'name', $min_depth = 1)
 
   // Always search sites/all/* as well as the global directories.
   $searchdir[] = 'sites/all/' . $directory;
+  $searchdir[] = 'sites/project/' . $directory;
 
   if (file_exists("$config/$directory")) {
     $searchdir[] = "$config/$directory";
