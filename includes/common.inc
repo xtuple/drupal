@@ -5272,6 +5272,8 @@ function _drupal_bootstrap_full() {
   fix_gpc_magic();
   // Load all enabled modules
   module_load_all();
+  // React on loaded modules
+  module_invoke_all("module_load_all");
   // Reset drupal_alter() and module_implements() static caches as these
   // include implementations for vital modules only when called early on
   // in the bootstrap.
