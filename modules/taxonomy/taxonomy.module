@@ -1781,7 +1781,7 @@ function taxonomy_autocomplete_validate($element, &$form_state) {
           'vocabulary_machine_name' => $vocabulary->machine_name,
         );
       }
-      $value[] = (array)$term;
+      $value[] = method_exists($term, 'toArray') ? $term->toArray() : (array) $term;
     }
   }
 

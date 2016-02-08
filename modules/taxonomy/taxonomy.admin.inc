@@ -666,7 +666,7 @@ function taxonomy_form_term($form, &$form_state, $edit = array(), $vocabulary = 
   }
 
   $parent = array_keys(taxonomy_get_parents($term->tid));
-  $form['#term'] = (array) $term;
+  $form['#term'] = method_exists($term, 'toArray') ? $term->toArray() : (array) $term;
   $form['#term']['parent'] = $parent;
   $form['#vocabulary'] = $vocabulary;
 
