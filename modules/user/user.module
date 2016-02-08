@@ -422,6 +422,9 @@ function user_load_by_name($name) {
 function user_save($account, $edit = array(), $category = 'account') {
   $transaction = db_transaction();
   try {
+    if (method_exists($account, 'original')) {
+      $account = $account->original();
+    }
     if (isset($edit['pass']) && strlen(trim($edit['pass'])) > 0) {
       // Allow alternate password hashing schemes.
       require_once DRUPAL_ROOT . '/' . variable_get('password_inc', 'includes/password.inc');
@@ -3916,6 +3919,9 @@ function user_register_submit($form, &$form_state) {
 
   // Populate $edit with the properties of $account, which have been edited on
   // this form by taking over all values, which appear in the form values too.
+  if (method_exists($account, 'original')) {
+    $account = $account->original();
+  }
   $edit = array_intersect_key((array) $account, $form_state['values']);
   $account = user_save($account, $edit);
 
