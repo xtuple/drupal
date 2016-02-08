@@ -1,0 +1,16 @@
+{
+  "name": "cdd/drupal7",
+  "license": "GPL-2.0",
+  "type": "drupal-core",
+  "description": "Drupal 7 fork by Code-Driven Drupal project",
+  "minimum-stability": "dev",
+  "require": {
+    "cdd/drupal-installer-plugin": "dev-master"
+  },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "satis.codedrivendrupal.com"
+    }
+  ]
+}
