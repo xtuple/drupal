@@ -7318,7 +7318,7 @@ function drupal_write_record($table, &$record, $primary_keys = array()) {
       continue;
     }
 
-    if (!property_exists($object, $field)) {
+    if (!isset($object->{$field}) || $object->{$field} === NULL) {
       // Skip fields that are not provided, default values are already known
       // by the database.
       continue;
@@ -7406,7 +7406,7 @@ function drupal_write_record($table, &$record, $primary_keys = array()) {
   // If we are inserting, populate empty fields with default values.
   if (empty($primary_keys)) {
     foreach ($schema['fields'] as $field => $info) {
-      if (isset($info['default']) && !property_exists($object, $field)) {
+      if (isset($info['default']) && (!isset($object->{$field}) || $object->{$field} === NULL)) {
         $object->$field = $info['default'];
       }
     }

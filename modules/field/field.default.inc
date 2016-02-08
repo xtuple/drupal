@@ -107,7 +107,7 @@ function field_default_insert($entity_type, $entity, $field, $instance, $langcod
   // assigning it a default value. This way we ensure that only the intended
   // languages get a default value. Otherwise we could have default values for
   // not yet open languages.
-  if (empty($entity) || !property_exists($entity, $field['field_name']) ||
+  if (empty($entity) || (!isset($entity->{$field['field_name']}) || $entity->{$field['field_name']} === NULL) ||
     (isset($entity->{$field['field_name']}[$langcode]) && count($entity->{$field['field_name']}[$langcode]) == 0)) {
     $items = field_get_default_value($entity_type, $entity, $field, $instance, $langcode);
   }
