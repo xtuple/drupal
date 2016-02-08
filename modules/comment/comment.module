@@ -364,7 +364,7 @@ function _comment_body_field_create($info) {
   if (!field_read_field('comment_body', array('include_inactive' => TRUE))) {
     $field = array(
       'field_name' => 'comment_body',
-      'type' => 'text_long',
+      'type' => variable_get('comment_body_field_type', 'text_long'),
       'entity_types' => array('comment'),
     );
     field_create_field($field);
