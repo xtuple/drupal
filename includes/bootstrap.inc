@@ -861,8 +861,15 @@ function drupal_get_filename($type, $name, $filename = NULL, $trigger_error = TR
 
   // Profiles are a special case: they have a fixed location and naming.
   if ($type == 'profile') {
-    $profile_filename = "profiles/$name/$name.profile";
-    $files[$type][$name] = file_exists($profile_filename) ? $profile_filename : FALSE;
+    $profile_filenames[] = "profiles/$name/$name.profile";
+    $profile_filenames[] = "sites/all/profiles/$name/$name.profile";
+    foreach ($profile_filenames as $filename) {
+      $files[$type][$name] = FALSE;
+      if (file_exists($filename)) {
+        $files[$type][$name] = $filename;
+        break;
+      }
+    }
   }
   if (!isset($files[$type])) {
     $files[$type] = array();
@@ -3817,6 +3824,63 @@ function drupal_check_memory_limit($required, $memory_limit = NULL) {
   // - The memory limit is set to unlimited (-1).
   // - The memory limit is greater than the memory required for the operation.
   return ((!$memory_limit) || ($memory_limit == -1) || (parse_size($memory_limit) >= parse_size($required)));
+}
+
+/**
+ * Return list of possible directories with installation profiles.
+ *
+ * @return array
+ */
+function install_get_profile_directories() {
+  $directories = array(
+    'profiles',
+    'sites/all/profiles',
+  );
+
+  return $directories;
+}
+
+/**
+ * Return .profile file path if it exists.
+ *
+ * @param string  $profile_name
+ * @param boolean $absolute_path
+ *
+ * @return null|string
+ */
+function install_get_profile_profile_file($profile_name, $absolute_path = TRUE) {
+  $path = NULL;
+
+  foreach (install_get_profile_directories() as $directory) {
+    $path = $directory . '/' . $profile_name . '/' . $profile_name . '.profile';
+    if ($absolute_path) {
+      $path = DRUPAL_ROOT . '/' . $path;
+    }
+    if (file_exists($path)) {
+      break;
+    }
+  }
+
+  return $path;
+}
+
+/**
+ * Return .info file path if it exists.
+ *
+ * @param $profile_name
+ * @return null|string
+ */
+function install_get_profile_info_file($profile_name) {
+  $path = NULL;
+
+  foreach (install_get_profile_directories() as $directory) {
+    $path = $directory . '/' . $profile_name . '/' . $profile_name . '.info';
+    if (file_exists($path)) {
+      break;
+    }
+  }
+
+  return $path;
 }
 
 /**

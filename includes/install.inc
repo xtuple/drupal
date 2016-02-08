@@ -682,9 +682,9 @@ function drupal_verify_profile($install_state) {
   include_once DRUPAL_ROOT . '/includes/file.inc';
   include_once DRUPAL_ROOT . '/includes/common.inc';
 
-  $profile_file = DRUPAL_ROOT . "/profiles/$profile/$profile.profile";
+  $profile_file = install_get_profile_profile_file($profile);
 
-  if (!isset($profile) || !file_exists($profile_file)) {
+  if (!isset($profile) || empty($profile_file)) {
     throw new Exception(install_no_profile_error());
   }
   $info = $install_state['profile_info'];
@@ -1172,9 +1172,9 @@ function st($string, array $args = array(), array $options = array()) {
 function drupal_check_profile($profile) {
   include_once DRUPAL_ROOT . '/includes/file.inc';
 
-  $profile_file = DRUPAL_ROOT . "/profiles/$profile/$profile.profile";
+  $profile_file = install_get_profile_profile_file($profile);
 
-  if (!isset($profile) || !file_exists($profile_file)) {
+  if (!isset($profile) || empty($profile_file)) {
     throw new Exception(install_no_profile_error());
   }
 
@@ -1298,7 +1298,7 @@ function install_profile_info($profile, $locale = 'en') {
       'hidden' => FALSE,
       'php' => DRUPAL_MINIMUM_PHP,
     );
-    $info = drupal_parse_info_file("profiles/$profile/$profile.info") + $defaults;
+    $info = drupal_parse_info_file(install_get_profile_info_file($profile)) + $defaults;
     $info['dependencies'] = array_unique(array_merge(
       drupal_required_modules(),
       $info['dependencies'],

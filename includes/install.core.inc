@@ -574,8 +574,8 @@ function install_tasks($install_state) {
   if (!empty($install_state['parameters']['profile'])) {
     // Load the profile install file, because it is not always loaded when
     // hook_install_tasks() is invoked (e.g. batch processing).
-    $profile_install_file = DRUPAL_ROOT . '/profiles/' . $install_state['parameters']['profile'] . '/' . $install_state['parameters']['profile'] . '.install';
-    if (file_exists($profile_install_file)) {
+    $profile_install_file = install_get_profile_profile_file($install_state['parameters']['profile']);
+    if ($profile_install_file) {
       include_once $profile_install_file;
     }
     $function = $install_state['parameters']['profile'] . '_install_tasks';
@@ -602,8 +602,8 @@ function install_tasks($install_state) {
 
   // Allow the installation profile to modify the full list of tasks.
   if (!empty($install_state['parameters']['profile'])) {
-    $profile_file = DRUPAL_ROOT . '/profiles/' . $install_state['parameters']['profile'] . '/' . $install_state['parameters']['profile'] . '.profile';
-    if (file_exists($profile_file)) {
+    $profile_file = install_get_profile_profile_file($install_state['parameters']['profile']);
+    if ($profile_file) {
       include_once $profile_file;
       $function = $install_state['parameters']['profile'] . '_install_tasks_alter';
       if (function_exists($function)) {
@@ -1033,7 +1033,12 @@ function install_settings_form_submit($form, &$form_state) {
  * Finds all .profile files.
  */
 function install_find_profiles() {
-  return file_scan_directory('./profiles', '/\.profile$/', array('key' => 'name'));
+  $profiles = array_merge(
+    file_scan_directory('./profiles', '/\.profile$/', array('key' => 'name')),
+    file_scan_directory('./sites/all/profiles', '/\.profile$/', array('key' => 'name'))
+  );
+
+  return $profiles;
 }
 
 /**
@@ -1375,8 +1380,8 @@ function install_already_done_error() {
  *   the profile cannot be loaded.
  */
 function install_load_profile(&$install_state) {
-  $profile_file = DRUPAL_ROOT . '/profiles/' . $install_state['parameters']['profile'] . '/' . $install_state['parameters']['profile'] . '.profile';
-  if (file_exists($profile_file)) {
+  $profile_file = install_get_profile_profile_file($install_state['parameters']['profile']);
+  if ($profile_file) {
     include_once $profile_file;
     $install_state['profile_info'] = install_profile_info($install_state['parameters']['profile'], $install_state['parameters']['locale']);
   }
