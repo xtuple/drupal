@@ -246,7 +246,7 @@ function install_begin_request(&$install_state) {
 
   // Load module basics (needed for hook invokes).
   include_once DRUPAL_ROOT . '/includes/module.inc';
-  include_once DRUPAL_ROOT . '/includes/session.inc';
+  include_once DRUPAL_ROOT . '/' . variable_get('session_inc', 'includes/session.inc');
 
   // Set up $language, so t() caller functions will still work.
   drupal_language_initialize();
