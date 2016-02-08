@@ -1042,9 +1042,9 @@ class DrupalUpdateException extends Exception { }
 function update_batch($start, $redirect = NULL, $url = NULL, $batch = array(), $redirect_callback = 'drupal_goto') {
   // During the update, bring the site offline so that schema changes do not
   // affect visiting users.
-  $_SESSION['maintenance_mode'] = variable_get('maintenance_mode', FALSE);
-  if ($_SESSION['maintenance_mode'] == FALSE) {
-    variable_set('maintenance_mode', TRUE);
+  $_SESSION['maintenance_mode'] = variable_get('maintenance_mode', 0);
+  if ($_SESSION['maintenance_mode'] == 0) {
+    variable_set('maintenance_mode', 1);
   }
 
   // Resolve any update dependencies to determine the actual updates that will
@@ -1120,8 +1120,8 @@ function update_finished($success, $results, $operations) {
 
   // Now that the update is done, we can put the site back online if it was
   // previously in maintenance mode.
-  if (isset($_SESSION['maintenance_mode']) && $_SESSION['maintenance_mode'] == FALSE) {
-    variable_set('maintenance_mode', FALSE);
+  if (isset($_SESSION['maintenance_mode']) && $_SESSION['maintenance_mode'] == 0) {
+    variable_set('maintenance_mode', 0);
     unset($_SESSION['maintenance_mode']);
   }
 }

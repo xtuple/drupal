@@ -189,15 +189,15 @@ function update_authorize_update_batch_finished($success, $results) {
       $success = FALSE;
     }
   }
-  $offline = variable_get('maintenance_mode', FALSE);
+  $offline = variable_get('maintenance_mode', 0);
   if ($success) {
     // Now that the update completed, we need to clear the cache of available
     // update data and recompute our status, so prevent show bogus results.
     _update_authorize_clear_update_status();
 
     // Take the site out of maintenance mode if it was previously that way.
-    if ($offline && isset($_SESSION['maintenance_mode']) && $_SESSION['maintenance_mode'] == FALSE) {
-      variable_set('maintenance_mode', FALSE);
+    if ($offline && isset($_SESSION['maintenance_mode']) && $_SESSION['maintenance_mode'] == 0) {
+      variable_set('maintenance_mode', 0);
       $page_message = array(
         'message' => t('Update was completed successfully. Your site has been taken out of maintenance mode.'),
         'type' => 'status',
@@ -258,11 +258,11 @@ function update_authorize_install_batch_finished($success, $results) {
       $success = FALSE;
     }
   }
-  $offline = variable_get('maintenance_mode', FALSE);
+  $offline = variable_get('maintenance_mode', 0);
   if ($success) {
     // Take the site out of maintenance mode if it was previously that way.
-    if ($offline && isset($_SESSION['maintenance_mode']) && $_SESSION['maintenance_mode'] == FALSE) {
-      variable_set('maintenance_mode', FALSE);
+    if ($offline && isset($_SESSION['maintenance_mode']) && $_SESSION['maintenance_mode'] == 0) {
+      variable_set('maintenance_mode', 0);
       $page_message = array(
         'message' => t('Installation was completed successfully. Your site has been taken out of maintenance mode.'),
         'type' => 'status',
