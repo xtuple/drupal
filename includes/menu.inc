@@ -3865,6 +3865,10 @@ function _menu_router_save($menu, $masks) {
   $num_records = 0;
 
   foreach ($menu as $path => $item) {
+    if (empty($item['weight'])) {
+      $item['weight'] = 0;
+    }
+
     // Fill in insert object values.
     $insert->values(array(
       'path' => $item['path'],
