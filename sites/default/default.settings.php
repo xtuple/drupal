@@ -639,3 +639,12 @@ $conf['404_fast_html'] = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN"
  * @see drupal_clean_css_identifier()
  */
 # $conf['allow_css_double_underscores'] = TRUE;
+
+/**
+ * Include parameters from parameters.php to avoid changing settings.php
+ */
+$parameters = __DIR__ . '/parameters.php';
+if (file_exists($parameters)) {
+  /** @noinspection PhpIncludeInspection */
+  include_once $parameters;
+}
