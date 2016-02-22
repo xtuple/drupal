@@ -641,10 +641,9 @@ $conf['404_fast_html'] = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN"
 # $conf['allow_css_double_underscores'] = TRUE;
 
 /**
- * Include parameters from parameters.php to avoid changing settings.php
+ * Include parameters from application.php to avoid changing settings.php
  */
-$parameters = __DIR__ . '/parameters.php';
-if (file_exists($parameters)) {
+if (file_exists(__DIR__ . '/application.php')) {
   /** @noinspection PhpIncludeInspection */
-  include_once $parameters;
+  include_once __DIR__ . '/application.php';
 }

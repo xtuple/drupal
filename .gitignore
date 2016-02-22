@@ -9,4 +9,4 @@ sites/*/private
 files
 sites/all
 sites/project
-sites/default/parameters.php
+sites/default/application.php
