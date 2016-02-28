@@ -937,3 +937,43 @@ function taxonomy_update_7011(&$sandbox) {
 /**
  * @} End of "addtogroup updates-7.x-extra".
  */
+
+/**
+ * Change permissions to use vocabulary's machine name instead of vid
+ */
+function taxonomy_update_7012() {
+  $permissions = array();
+  $result = db_select('role_permission', 'p')
+    ->fields('p')
+    ->condition('module', 'taxonomy', '=')
+    ->execute();
+  while ($row = $result->fetchObject()) {
+    $permissions[$row->permission][] = $row->rid;
+  }
+  $roles = array();
+  $new_permissions = array();
+  foreach (taxonomy_get_vocabularies() as $voc) {
+    $edit =  "edit terms in {$voc->vid}";
+    $new_edit = "edit terms in {$voc->machine_name}";
+    if (isset($permissions[$edit])) {
+      $new_permissions[$new_edit] = $permissions[$edit];
+      foreach ($permissions[$edit] as $rid) {
+        $roles[$rid][$edit] = FALSE;
+        $roles[$rid][$new_edit] = TRUE;
+      }
+    }
+    $delete = "delete terms in {$voc->vid}";
+    $new_delete = "delete terms in {$voc->machine_name}";
+    if (isset($permissions[$delete])) {
+      $new_permissions[$new_delete] = $permissions[$delete];
+      foreach ($permissions[$edit] as $rid) {
+        $roles[$rid][$delete] = FALSE;
+        $roles[$rid][$new_delete] = TRUE;
+      }
+    }
+  }
+  foreach ($roles as $rid => $permissions) {
+    user_role_change_permissions($rid, $permissions);
+  }
+  return t('Taxonomy permissions updated using vocabularies machine names instead of vid');
+}
