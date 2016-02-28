@@ -2057,3 +2057,16 @@ function taxonomy_entity_query_alter($query) {
     unset($conditions['bundle']);
   }
 }
+
+/**
+ * Implements hook_forms().
+ */
+function taxonomy_forms() {
+  $forms = array();
+  if ($vocabularies = taxonomy_get_vocabularies()) {
+    foreach ($vocabularies as $vocabulary) {
+      $forms['taxonomy_form_term_' . $vocabulary->machine_name]['callback'] = 'taxonomy_form_term';
+    }
+  }
+  return $forms;
+}
