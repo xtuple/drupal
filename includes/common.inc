@@ -8487,3 +8487,22 @@ function drupal_get_filetransfer_info() {
   }
   return $info;
 }
+
+/**
+ * Helper function to replace `+=` operator to work with ArrayAccess objects
+ *
+ * @param array|\ArrayAccess $array
+ * @param array              $addition
+ *
+ * @return array|\ArrayAccess
+ */
+function array_add($array, array $addition) {
+  if (is_array($array)) {
+    $array += $addition;
+    return $array;
+  }
+  foreach ($addition as $key => $value) {
+    $array[$key] = isset($array[$key]) ? $array[$key] : $value;
+  }
+  return $array;
+}

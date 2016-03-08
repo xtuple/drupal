@@ -1808,11 +1808,11 @@ function form_builder($form_id, &$element, &$form_state) {
     $element['#defaults_loaded'] = TRUE;
   }
   // Assign basic defaults common for all form elements.
-  $element += array(
+  $element = array_add($element, array(
     '#required' => FALSE,
     '#attributes' => array(),
     '#title_display' => 'before',
-  );
+  ));
 
   // Special handling if we're on the top level form element.
   if (isset($element['#type']) && $element['#type'] == 'form') {
@@ -1882,7 +1882,7 @@ function form_builder($form_id, &$element, &$form_state) {
     // Prior to checking properties of child elements, their default properties
     // need to be loaded.
     if (isset($element[$key]['#type']) && empty($element[$key]['#defaults_loaded']) && ($info = element_info($element[$key]['#type']))) {
-      $element[$key] += $info;
+      $element[$key] = array_add($element[$key], $info);
       $element[$key]['#defaults_loaded'] = TRUE;
     }
 
