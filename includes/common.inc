@@ -6453,8 +6453,8 @@ function drupal_render_cid_create($elements) {
  * Function used by uasort to sort structured arrays by weight.
  */
 function element_sort($a, $b) {
-  $a_weight = (is_array($a) && isset($a['#weight'])) ? $a['#weight'] : 0;
-  $b_weight = (is_array($b) && isset($b['#weight'])) ? $b['#weight'] : 0;
+  $a_weight = (is_array_access($a) && isset($a['#weight'])) ? $a['#weight'] : 0;
+  $b_weight = (is_array_access($b) && isset($b['#weight'])) ? $b['#weight'] : 0;
   if ($a_weight == $b_weight) {
     return 0;
   }
@@ -6465,8 +6465,8 @@ function element_sort($a, $b) {
  * Array sorting callback; sorts elements by title.
  */
 function element_sort_by_title($a, $b) {
-  $a_title = (is_array($a) && isset($a['#title'])) ? $a['#title'] : '';
-  $b_title = (is_array($b) && isset($b['#title'])) ? $b['#title'] : '';
+  $a_title = (is_array_access($a) && isset($a['#title'])) ? $a['#title'] : '';
+  $b_title = (is_array_access($b) && isset($b['#title'])) ? $b['#title'] : '';
   return strnatcasecmp($a_title, $b_title);
 }
 
@@ -8505,4 +8505,20 @@ function array_add($array, array $addition) {
     $array[$key] = isset($array[$key]) ? $array[$key] : $value;
   }
   return $array;
+}
+
+/**
+ * @param mixed $variable
+ *
+ * @return bool
+ */
+function is_array_access($variable) {
+  return (
+    is_array($variable)
+    || (
+      is_object($variable)
+      && in_array('ArrayAccess', class_implements($variable)
+      )
+    )
+  );
 }
