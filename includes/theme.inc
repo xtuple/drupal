@@ -2399,7 +2399,7 @@ function _theme_table_cell($cell, $header = FALSE) {
   if (is_array($cell)) {
     $data = isset($cell['data']) ? $cell['data'] : '';
     // Cell's data property can be a string or a renderable array.
-    if (is_array($data)) {
+    if (is_array_access($data)) {
       $data = drupal_render($data);
     }
     $header |= isset($cell['header']);
