@@ -5555,6 +5555,9 @@ function drupal_system_listing($mask, $directory, $key = 'name', $min_depth = 1)
     if (file_exists("profiles/$profile/$directory")) {
       $searchdir[] = "profiles/$profile/$directory";
     }
+    elseif (file_exists("sites/all/profiles/$profile/$directory")) {
+      $searchdir[] = "sites/all/profiles/$profile/$directory";
+    }
   }
 
   // Always search sites/all/* as well as the global directories.
