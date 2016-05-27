@@ -1048,7 +1048,7 @@ function theme($hook, $variables = array()) {
       if (!isset($candidate)) {
         watchdog('theme', 'Theme hook %hook not found.', array('%hook' => $hook), WATCHDOG_WARNING);
       }
-      return '';
+      return NULL;
     }
   }
 

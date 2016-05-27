@@ -6050,7 +6050,7 @@ function drupal_render(&$elements) {
   // Initialize this element's #children, unless a #pre_render callback already
   // preset #children.
   if (!isset($elements['#children'])) {
-    $elements['#children'] = '';
+    $elements['#children'] = NULL;
   }
   // Call the element's #theme function if it is set. Then any children of the
   // element have to be rendered there.
@@ -6060,7 +6060,7 @@ function drupal_render(&$elements) {
   // If #theme was not set and the element has children, render them now.
   // This is the same process as drupal_render_children() but is inlined
   // for speed.
-  if ($elements['#children'] == '') {
+  if ($elements['#children'] === NULL) {
     foreach ($children as $key) {
       $elements['#children'] .= drupal_render($elements[$key]);
     }
