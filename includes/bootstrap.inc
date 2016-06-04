@@ -3511,7 +3511,7 @@ function _registry_check_code($type, $name = NULL) {
   // $file is FALSE.
   $lookup_cache[$cache_key] = $file;
 
-  if ($file) {
+  if (file_exists($file)) {
     include_once DRUPAL_ROOT . '/' . $file;
     return TRUE;
   }
