@@ -6596,7 +6596,7 @@ function element_children(&$elements, $sort = FALSE) {
   foreach ($elements as $key => $value) {
     if ($key === '' || $key[0] !== '#') {
       $children[$key] = $value;
-      if (is_array_access($value) && isset($value['#weight'])) {
+      if (is_array_access($value) && isset($value['#weight']) && $value['#weight'] !== 0) {
         $sortable = TRUE;
       }
     }
