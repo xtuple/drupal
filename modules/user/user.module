@@ -563,7 +563,7 @@ function user_save($account, $edit = array(), $category = 'account') {
 
       // Update $edit with any interim changes to $account.
       foreach ($account as $key => $value) {
-        if ((!isset($account->original->$key) || $account->original->key === NULL) || $value !== $account->original->$key) {
+        if ((!isset($account->original->$key) || $account->original->$key === NULL) || $value !== $account->original->$key) {
           $edit[$key] = $value;
         }
       }
