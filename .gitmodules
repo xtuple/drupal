@@ -1,0 +1,75 @@
+[submodule "sites/all/modules/contrib/admin_menu"]
+	path = sites/all/modules/contrib/admin_menu
+	url = git://git.drupal.org/project/admin_menu.git
+[submodule "sites/all/modules/contrib/admin_theme"]
+	path = sites/all/modules/contrib/admin_theme
+	url = git://git.drupal.org/project/admin_theme.git
+[submodule "sites/all/modules/contrib/ctools"]
+	path = sites/all/modules/contrib/ctools
+	url = git://git.drupal.org/project/ctools.git
+[submodule "sites/all/modules/contrib/date"]
+	path = sites/all/modules/contrib/date
+	url = git://git.drupal.org/project/date.git
+[submodule "sites/all/modules/contrib/elements"]
+	path = sites/all/modules/contrib/elements
+	url = git://git.drupal.org/project/elements.git
+[submodule "sites/all/modules/contrib/email"]
+	path = sites/all/modules/contrib/email
+	url = git://git.drupal.org/project/email.git
+[submodule "sites/all/modules/contrib/entity"]
+	path = sites/all/modules/contrib/entity
+	url = git://git.drupal.org/project/entity.git
+[submodule "sites/all/modules/contrib/entityreference"]
+	path = sites/all/modules/contrib/entityreference
+	url = git://git.drupal.org/project/entityreference.git
+[submodule "sites/all/modules/contrib/file_entity"]
+	path = sites/all/modules/contrib/file_entity
+	url = git://git.drupal.org/project/file_entity.git
+[submodule "sites/all/modules/contrib/filefield_paths"]
+	path = sites/all/modules/contrib/filefield_paths
+	url = git://git.drupal.org/project/filefield_paths.git
+[submodule "sites/all/modules/contrib/globalredirect"]
+	path = sites/all/modules/contrib/globalredirect
+	url = git://git.drupal.org/project/globalredirect.git
+[submodule "sites/all/modules/contrib/googleanalytics"]
+	path = sites/all/modules/contrib/googleanalytics
+	url = git://git.drupal.org/project/google_analytics.git
+[submodule "sites/all/modules/contrib/jquery_update"]
+	path = sites/all/modules/contrib/jquery_update
+	url = git://git.drupal.org/project/jquery_update.git
+[submodule "sites/all/modules/contrib/link"]
+	path = sites/all/modules/contrib/link
+	url = git://git.drupal.org/project/link.git
+[submodule "sites/all/modules/contrib/media"]
+	path = sites/all/modules/contrib/media
+	url = git://git.drupal.org/project/media.git
+[submodule "sites/all/modules/contrib/multiple_fields_remove_button"]
+	path = sites/all/modules/contrib/multiple_fields_remove_button
+	url = git://git.drupal.org/project/multiple_fields_remove_button.git
+[submodule "sites/all/modules/contrib/nodequeue"]
+	path = sites/all/modules/contrib/nodequeue
+	url = git://git.drupal.org/project/nodequeue.git
+[submodule "sites/all/modules/contrib/redirect"]
+	path = sites/all/modules/contrib/redirect
+	url = git://git.drupal.org/project/redirect.git
+[submodule "sites/all/modules/contrib/role_delegation"]
+	path = sites/all/modules/contrib/role_delegation
+	url = git://git.drupal.org/project/role_delegation.git
+[submodule "sites/all/modules/contrib/site_verify"]
+	path = sites/all/modules/contrib/site_verify
+	url = git://git.drupal.org/project/site_verify.git
+[submodule "sites/all/modules/contrib/transliteration"]
+	path = sites/all/modules/contrib/transliteration
+	url = git://git.drupal.org/project/transliteration.git
+[submodule "sites/all/modules/contrib/uuid"]
+	path = sites/all/modules/contrib/uuid
+	url = git://git.drupal.org/project/uuid.git
+[submodule "sites/all/modules/contrib/view_unpublished"]
+	path = sites/all/modules/contrib/view_unpublished
+	url = git://git.drupal.org/project/view_unpublished.git
+[submodule "sites/all/modules/contrib/views"]
+	path = sites/all/modules/contrib/views
+	url = git://git.drupal.org/project/views.git
+[submodule "sites/all/modules/contrib/webform"]
+	path = sites/all/modules/contrib/webform
+	url = git://git.drupal.org/project/webform.git
