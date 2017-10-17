@@ -73,3 +73,30 @@
 [submodule "sites/all/modules/contrib/webform"]
 	path = sites/all/modules/contrib/webform
 	url = git://git.drupal.org/project/webform.git
+[submodule "sites/all/modules/legacy/addressfield"]
+	path = sites/all/modules/legacy/addressfield
+	url = git://git.drupal.org/project/addressfield.git
+[submodule "sites/all/modules/legacy/captcha"]
+	path = sites/all/modules/legacy/captcha
+	url = git://git.drupal.org/project/captcha.git
+[submodule "sites/all/modules/legacy/commerce"]
+	path = sites/all/modules/legacy/commerce
+	url = git://git.drupal.org/project/commerce.git
+[submodule "sites/all/modules/legacy/commerce_authnet"]
+	path = sites/all/modules/legacy/commerce_authnet
+	url = git://git.drupal.org/project/commerce_authnet.git
+[submodule "sites/all/modules/legacy/commerce_shipping"]
+	path = sites/all/modules/legacy/commerce_shipping
+	url = git://git.drupal.org/project/commerce_shipping.git
+[submodule "sites/all/modules/legacy/memcache"]
+	path = sites/all/modules/legacy/memcache
+	url = git://git.drupal.org/project/memcache.git
+[submodule "sites/all/modules/legacy/privatemsg"]
+	path = sites/all/modules/legacy/privatemsg
+	url = git://git.drupal.org/project/privatemsg.git
+[submodule "sites/all/modules/legacy/rules"]
+	path = sites/all/modules/legacy/rules
+	url = git://git.drupal.org/project/rules.git
+[submodule "sites/all/modules/legacy/xmlsitemap"]
+	path = sites/all/modules/legacy/xmlsitemap
+	url = git://git.drupal.org/project/xmlsitemap.git
